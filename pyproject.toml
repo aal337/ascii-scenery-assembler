@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "asciiasm"
 dynamic = ["version"]
-dependencies = ["curses"]
+dependencies = ["uni-curses", "numpy"]
 authors = [
     {name = "Abdurahman Algheb", email = "abdurahmanalgheb@gmail.com"}
 ]
