@@ -1,8 +1,8 @@
 """Main entry point for application."""
 
-from .editor import canvas, sprites
-from .control import commands
-from .files import load, save
+from asciiasm.editor import canvas, sprites
+from asciiasm.control import commands
+from asciiasm.files import load, save
 
 
 def main():

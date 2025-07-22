@@ -1,7 +1,7 @@
 """Provide canvas editing and rendering utility."""
 
 from pathlib import Path
-from asciiasm.editor.sprites import Sprite
+from .sprites import Sprite
 
 class Canvas:
     """Canvas on which sprites are placed."""
