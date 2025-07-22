@@ -29,12 +29,20 @@ class Sprite:
     def transparentize_whitespace(self) -> None:
         """Strip outer whitespace and replace it with None."""
         def config(*args):
-            return {"takes height": args[0], "j start": args[1], "j height": args[2], "sign": args[3]}
+            return {"takes height": args[0], "j start": args[1],
+                    "j height": args[2], "sign": args[3]}
         orientations = {"left": {"takes height": True, "j start": 0, "j height": False, "sign": 1},
-        "right": config(True, self.width, False, -1), "top": config(False, 0, True, 1), "bottom": config(False, self.height, True, -1)}
+                        "right": config(True, self.width, False, -1),
+                        "top": config(False, 0, True, 1),
+                        "bottom": config(False, self.height, True, -1)}
         for __, values in orientations.items():
-            for i in range(self.height if values["takes height"] else self.width): # self.height, width of current line, width of current line
+            for i in range(self.height
+                           if values["takes height"]
+                           else self.width):
+                           # self.height, width of current line, width of current line
                 j = values["j start"] # length of current line, 0, self.height
-                while (self.grid[i][j] if (condition := not values["j height"]) else self.grid[j][i]) in {" ", None}: # i,j , j,i , j,i
+                while (self.grid[i][j]
+                       if (condition := not values["j height"])
+                       else self.grid[j][i]) in {" ", None}: # i,j , j,i , j,i
                     self.grid[i if condition else j][j if condition else i] = None # same
                     j += values["sign"] # -1 for right and bottom
