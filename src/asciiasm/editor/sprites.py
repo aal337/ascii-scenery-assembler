@@ -29,7 +29,7 @@ class Sprite:
     def transparentize_whitespace(self) -> None:
         """Strip outer whitespace and replace it with None."""
         def config(*args):
-            return {"takes height": *args[0], "j start": *args[1], "j height": *args[2], "sign": *args[3]}
+            return {"takes height": args[0], "j start": args[1], "j height": args[2], "sign": args[3]}
         orientations = {"left": {"takes height" True: "j start": 0, "j height": False, "sign": 1},
         "right": config(True, self.width, False, -1), "top": config(False, 0, True, 1), "bottom": config(False, self.height, True, -1)}
         for orientation, values in orientations.items():
