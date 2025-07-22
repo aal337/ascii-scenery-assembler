@@ -9,7 +9,7 @@ from asciiasm.editor.canvas import Canvas
 def load_sprite(file_path: Path) -> Sprite:
     """Load a sprite from a text file."""
     with open(file_path, encoding="UTF-8") as f:
-        sprite = Sprite(f.read())
+        sprite = Sprite(file_path, f.read())
     return sprite
 
 

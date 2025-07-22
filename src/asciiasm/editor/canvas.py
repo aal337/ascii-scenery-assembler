@@ -14,7 +14,7 @@ class Canvas:
 
     def files(self) -> dict[Path, Sprite]:
         """Return a list of files to save as work progress."""
-        return {Path(""): Sprite("")}
+        return {Path(""): Sprite("name", "")}
 
     def add_sprite(self, sprite: Sprite):
         """Add a sprite to the canvas."""
