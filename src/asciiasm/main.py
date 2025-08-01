@@ -11,7 +11,7 @@ def main():
     main_canvas = canvas.Canvas()
     stdscr = initscr()
     # i know that i don't know if this will work
-    session = ui.Session(stdscr)
+    session = ui.Session(stdscr, main_canvas)
     while True:
         command = session.take_input()
         session.execute(command)
