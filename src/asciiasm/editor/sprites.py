@@ -22,11 +22,13 @@ class Sprite:
         self.positions = []
         self.grid = np.array([[char for char in line] for line in line_list])
 
+        self.transparentise_whitespace()
+
     def serialise(self) -> str:
         """Return a string representation of the sprite."""
         return self.text
 
-    def transparentize_whitespace(self) -> None:
+    def transparentise_whitespace(self) -> None:
         """Strip outer whitespace and replace it with None."""
         def config(*args):
             return {"takes height": args[0], "j start": args[1],
