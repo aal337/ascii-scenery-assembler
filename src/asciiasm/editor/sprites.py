@@ -10,7 +10,9 @@ class Sprite:
     name: str
     height: int
     width: int
-    positions: list[tuple[int, int]]
+    layer: int
+    row: int
+    column: int
     grid: np.ndarray
     text: str
 
@@ -19,7 +21,6 @@ class Sprite:
         self.text = text
         self.height = len(line_list := text.split("\n"))
         self.width = max(map(len, line_list))
-        self.positions = []
         self.grid = np.array([[char for char in line] for line in line_list])
 
         self.transparentise_whitespace()

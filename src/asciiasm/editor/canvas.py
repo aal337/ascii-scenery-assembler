@@ -16,6 +16,7 @@ class Canvas:
         """Return a list of files to save as work progress."""
         return {Path(""): Sprite("name", "")}
 
-    def add_sprite(self, sprite: Sprite):
+    def add_sprite(self, sprite: Sprite, layer: int, row: int, column: int) -> None:
         """Add a sprite to the canvas."""
+        sprite.layer, sprite.row, sprite.column = layer, row, column
         self.sprites.append(sprite)
