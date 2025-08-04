@@ -1,21 +1,26 @@
 """todo"""
 
-from unicurses import *
+from unicurses import move, addstr, refresh, getstr
 from .commands import Command
 from ..editor import canvas
 
 class Session:
 
-    def __init__(self, stdscr) -> None:
-        self.stdscr = stdscr
+    def __init__(self, scr) -> None:
         self.canvas = canvas.Canvas()
+        self.scr = scr
 
-    def take_input(self, command: str) -> Command:
+    def take_input(self) -> Command:
+        move(self.scr.getmaxy() - 1, 0)
+        addstr("Enter command: ")
+        refresh()
+        command = getstr().decode("utf-8")
         return Command(command)
 
     def display_canvas(self):
-        pass
+        for line in self.canvas.serialise().split("\n"):
+            addstr(line + "\n")
 
     def execute(self, command: Command) -> None:
-        pass
+        command.command_func(*command.args)
         
