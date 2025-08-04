@@ -1,11 +1,16 @@
 """Provide commands for the application."""
 
-from asciiasm.files import load, save
+from ..files import load, save
+from ..editor.canvas import Canvas
 
 class Command():
     """Commands to use app."""
 
-    command_dict = {"load sprite": load.load_sprite, "save canvas": save.save_image}
+    command_dict = {
+        "load sprite": load.load_sprite,
+        "save canvas": save.save_image,
+        "place sprite": Canvas.add_sprite
+    }
     args: list[str]
     command: str
 
