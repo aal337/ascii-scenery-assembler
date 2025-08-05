@@ -1,7 +1,8 @@
 """todo"""
 
 from pathlib import Path
-from unicurses import move, addstr, refresh, getstr, getmaxy
+import sys
+from unicurses import move, addstr, refresh, getstr, getmaxy, endwin
 from ..editor import canvas, sprites
 from ..files import load, save
 
@@ -16,10 +17,11 @@ class Session:
         move(getmaxy(self.scr) - 1, 0)
         addstr("Enter command: ")
         refresh()
-        command = getstr().decode("utf-8")
+        command = getstr()
         return command
 
     def display_canvas(self):
+        move(0, 0)
         addstr(self.canvas.serialise().split("\n"))
         refresh()
 
@@ -36,3 +38,6 @@ class Session:
             case "load sprite":
                 sprite = load.load_sprite(Path(command_words[2]))
                 self.sprites[sprite.name] = sprite
+            case "exit session":
+                endwin()
+                sys.exit(0)
