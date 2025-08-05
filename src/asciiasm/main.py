@@ -2,9 +2,7 @@
 
 import sys
 from unicurses import initscr, endwin, refresh, clear
-from asciiasm.editor import canvas, sprites
 from asciiasm.control import ui
-from asciiasm.files import load, save
 
 
 def main():
@@ -18,9 +16,9 @@ def main():
             command = session.take_input()
             session.execute(command)
             session.display_canvas()
-    except KeyboardInterrupt:
+    except Exception as e:
         endwin()
-        sys.exit(0)
+        raise e
 
 
 if __name__ == "__main__":
