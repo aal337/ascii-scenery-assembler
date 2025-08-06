@@ -1,2 +1,37 @@
 # ascii-scenery-assembler
 A tool that helps with putting ascii sprites over each other.
+
+## Guide
+
+### Requirements
+1. Python (3.10-ish or more recent recommended)
+2. pip for easy installation
+3. git for alternative installation (and the only way as of writing this)
+If you're not sure whether you have Python on your machine, type "python --version" in the terminal. If you get something like "no such command", go to (the official Python website)[https://python.org] and get it from there.
+
+### Installation
+Type git clone https://github.com/aal337/ascii-scenery-assembler.git in the terminal, then cd ascii-scenery-assembler, then pip install . , the dot is important.
+As soon as asciiasm is available on PyPI:
+Type pip install asciiasm in the terminal.
+
+### Usage
+1. Type asciiasm in the terminal.
+2. Available commands:
+    - load sprite path/to/sprite.txt
+      where path/to/sprite.txt is the path to your sprite, which will be used as its name.
+    - place sprite layer row column
+      where layer is the number of the layer you want to put the sprite into, row the number of the row where the top left corner of the sprite should be, and column the number of the column. Rows/columns start at 0 and are counted from top to bottom/left to right.
+      Layers start at 0, the higher the number, the further your sprite is 
+    - save canvas path
+      where path is the path at which you want to save your canvas.
+3. End application:
+    - CTRL + C
+    - Type "exit tool"
+
+## Disclaimer
+Currently, asciiasm is neither listed on PyPI nor am I sure if everything works properly. Just take a look at the contents of the tests folder.
+Your terminal could behave weirdly after usage.
+I'll create a release on Github, list on PyPI and remove this disclaimer as soon as I am somewhat sure I could in good faith recommend this app to you if you were searching for something that won't blow up your device.
+
+## Contribution
+If you've got feedback, send an email or open an issue.
