@@ -37,7 +37,7 @@ class Session:
                 save.save_image(self.canvas, Path(command_words[2]))
             case "load sprite":
                 sprite = load.load_sprite(Path(command_words[2]))
-                self.sprites[sprite.name] = sprite
+                self.sprites.update({sprite.name: sprite})
             case "exit session":
                 endwin()
                 sys.exit(0)
