@@ -216,3 +216,9 @@ shell.nix
 
 # .txt files for testing
 *.txt
+
+# mypy's out directroy
+out/
+
+# my miscellaneous stuff
+misc/
