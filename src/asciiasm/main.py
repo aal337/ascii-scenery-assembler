@@ -19,7 +19,8 @@ def main():
     except Exception as e:
         endwin()
         print(*session.command_log, sep="\n")
-        raise e
+        if not isinstance(e, KeyboardInterrupt):
+            raise e
 
 
 if __name__ == "__main__":
