@@ -18,6 +18,7 @@ def main():
             session.display_canvas()
     except Exception as e:
         endwin()
+        print(*session.command_log, sep="\n")
         raise e
 
 

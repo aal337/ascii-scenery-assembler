@@ -8,6 +8,7 @@ from ..files import load, save
 
 class Session:
     sprites: dict[str, sprites.Sprite] = {}
+    command_log: list[str] = []
 
     def __init__(self, scr) -> None:
         self.canvas = canvas.Canvas()
@@ -26,6 +27,7 @@ class Session:
         refresh()
 
     def execute(self, command: str) -> None:
+        self.command_log.append(command)
         command_words = command.split(" ")
         match " ".join(command_words[:2]):
             case "place sprite":
