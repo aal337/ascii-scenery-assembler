@@ -46,7 +46,7 @@ class Canvas:
         for y in range(height):
             for x in range(width):
                 for layer in reversed(used_layers_list):
-                    if char := layer_grids[layer][y][x] is not None:
+                    if (char := layer_grids[layer][y][x]) is not None:
                         result_grid[y][x] = char
                         break
         # 3. join characters into a string
