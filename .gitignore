@@ -222,3 +222,6 @@ out/
 
 # my miscellaneous stuff
 misc/
+
+# .ini files
+*.ini
