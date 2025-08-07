@@ -7,6 +7,7 @@ class Canvas:
     """Canvas on which sprites are placed."""
 
     sprites: list[Sprite] = []
+    used_layers: set[int] = set()
 
     def serialise(self) -> str:
         """Return a string representation of the canvas."""
@@ -24,12 +25,13 @@ class Canvas:
             # find dimensions of canvas
             if sprite.layer > max_layer:
                 max_layer = sprite.layer
-            if y := sprite.row + sprite.height > height:
-                height = x
-            if x := sprite.column + sprite.width > width:
+            if (y := sprite.row + sprite.height) > height:
+                height = y
+            if (x := sprite.column + sprite.width) > width:
                 width = x
         # create a grid for each layer and fill it
-        for i in range(max_layer + 1):
+        used_layers_list = sorted(list(self.used_layers))
+        for i in used_layers_list:
             layer_grids.update({i: [[None for __ in range(width)] for __ in range(height)]})
             for sprite in layers[i]:
                 # dumb approach for now: take each sprite and fill its area in the grid
@@ -43,7 +45,7 @@ class Canvas:
         result_grid = [[" " for __ in range(width)] for __ in range(height)]
         for y in range(height):
             for x in range(width):
-                for layer in range(max_layer, -1, -1):
+                for layer in reversed(used_layers_list):
                     if char := layer_grids[layer][y][x] is not None:
                         result_grid[y][x] = char
                         break
@@ -59,3 +61,4 @@ class Canvas:
         """Add a sprite to the canvas."""
         sprite.layer, sprite.row, sprite.column = layer, row, column
         self.sprites.append(sprite)
+        self.used_layers.add(layer)
