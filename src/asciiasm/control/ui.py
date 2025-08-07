@@ -2,7 +2,7 @@
 
 from pathlib import Path
 import sys
-from unicurses import move, addstr, refresh, getstr, getmaxy, endwin
+from unicurses import move, addstr, refresh, getstr, getmaxy, endwin, clear
 from ..editor import canvas
 from ..editor.sprites import Sprite
 from ..files import load, save
@@ -16,6 +16,8 @@ class Session:
         self.scr = scr
 
     def take_input(self) -> str:
+        clear()
+        self.display_canvas()
         move(getmaxy(self.scr) - 1, 0)
         addstr("Enter command: ")
         refresh()
@@ -23,6 +25,7 @@ class Session:
         return command
 
     def display_canvas(self):
+        clear()
         move(0, 0)
         addstr(self.canvas.serialise().split("\n"))
         refresh()
