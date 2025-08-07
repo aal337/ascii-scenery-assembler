@@ -7,7 +7,7 @@ from ..editor import canvas, sprites
 from ..files import load, save
 
 class Session:
-    sprites: dict[str, sprites.Sprite]
+    sprites: dict[str, sprites.Sprite] = {}
 
     def __init__(self, scr) -> None:
         self.canvas = canvas.Canvas()
