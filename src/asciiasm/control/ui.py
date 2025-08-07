@@ -27,7 +27,7 @@ class Session:
     def display_canvas(self):
         clear()
         move(0, 0)
-        addstr(self.canvas.serialise().split("\n"))
+        addstr(self.canvas.serialise())
         refresh()
 
     def execute(self, command: str) -> None:
