@@ -1,6 +1,5 @@
 """Main entry point for application."""
 
-import sys
 from unicurses import initscr, endwin, refresh, clear
 from asciiasm.control import ui
 
