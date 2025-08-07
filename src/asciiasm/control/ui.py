@@ -3,11 +3,12 @@
 from pathlib import Path
 import sys
 from unicurses import move, addstr, refresh, getstr, getmaxy, endwin
-from ..editor import canvas, sprites
+from ..editor import canvas
+from ..editor.sprites import Sprite
 from ..files import load, save
 
 class Session:
-    sprites: dict[str, sprites.Sprite] = {}
+    sprites: dict[str, Sprite] = {}
     command_log: list[str] = []
 
     def __init__(self, scr) -> None:
