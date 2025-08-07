@@ -6,7 +6,7 @@ from .sprites import Sprite
 class Canvas:
     """Canvas on which sprites are placed."""
 
-    sprites: list[Sprite]
+    sprites: list[Sprite] = []
 
     def serialise(self) -> str:
         """Return a string representation of the canvas."""
