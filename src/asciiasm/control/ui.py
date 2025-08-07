@@ -44,6 +44,7 @@ class Session:
             case "load sprite":
                 sprite = load.load_sprite(Path(command_words[2]))
                 self.sprites.update({sprite.name: sprite})
-            case "exit session":
+            case "exit tool":
                 endwin()
+                print(*["asciiasm: " + line for line in self.command_log], sep="\n")
                 sys.exit(0)
