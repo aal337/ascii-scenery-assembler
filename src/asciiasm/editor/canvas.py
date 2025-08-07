@@ -30,8 +30,8 @@ class Canvas:
             if (x := sprite.column + sprite.width) > width:
                 width = x
         # create a grid for each layer and fill it
-        used_layers_list = sorted(list(self.used_layers))
-        for i in used_layers_list:
+        used_layer_nums = sorted(list(self.used_layers))
+        for i in used_layer_nums:
             layer_grids.update({i: [[None for __ in range(width)] for __ in range(height)]})
             for sprite in layers[i]:
                 # dumb approach for now: take each sprite and fill its area in the grid
@@ -43,12 +43,11 @@ class Canvas:
         # 1. iterating through the cells of the final canvas
         # 2. find the first non-None character throughout all layers
         result_grid = [[" " for __ in range(width)] for __ in range(height)]
-        for y in range(height):
-            for x in range(width):
-                for layer in reversed(used_layers_list):
-                    if (char := layer_grids[layer][y][x]) is not None:
-                        result_grid[y][x] = char
-                        break
+        for layer in sorted(used_layer_nums):
+            for y in range(height):
+                for x in range(width):
+                    if (new_char := layer_grids[layer][y][x]) is not None:
+                        result_grid[y][x] = new_char
         # 3. join characters into a string
         return "\n".join(["".join(row) for row in result_grid])
 
