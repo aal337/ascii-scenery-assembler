@@ -12,16 +12,16 @@ body{margin:0;background:#000;color:#0f0;font-family:monospace;white-space:pre;}
 <script>
 const t=document.getElementById('terminal');
 const c=document.getElementById('cmd');
-const tree = " ---\n/   \\ \n\\\\   /\n ---\n | |\n/   \\ \n";
-const man = " ---\n/ ° \\ \n\\\\ + /\n -|-\n |||\n/ ^ \\ \n";
+const tree = " ---\n  /   \\ \n  \\\   /\n   ---\n   | |\n  /   \\ \n";
+const man = " ---\n  / ° \\ \n  \\\ + /\n   -|-\n   |||\n  / ^ \\ \n";
 function w(s){t.textContent+=s; t.scrollTop=t.scrollHeight}
 function wl(s){w(s+'\n')}
 function prompt(){w('> ')}
 function run(cmd){
- if(cmd==='asciiasm'){wl('Welcome to asciiasm');prompt()}
- else if(cmd==='load sprite tree.txt'){wl(tree);prompt()}
- else if(cmd==='load sprite man.txt'){wl(man);prompt()}
- else if(cmd==='exit'){wl('Goodbye');c.disabled=true}
+ if(cmd==='asciiasm'){wl('Welcome to asciiasm. Try loading tree.txt');prompt()}
+ else if(cmd==='load sprite tree.txt'){wl(tree + 'and man.txt');prompt()}
+ else if(cmd==='load sprite man.txt'){wl(man + 'and now exit');prompt()}
+ else if(cmd==='exit tool'){wl('Goodbye');c.disabled=true}
  else{wl('Unknown command');prompt()}}
 wl('Type "asciiasm" to begin')
 prompt()
