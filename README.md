@@ -32,6 +32,7 @@ Type pip install asciiasm in the terminal.
 
 ### Features
 Currently, you may want to use something else with more QoL. Analysing sprites to determine which whitespace fills a shape and which whitespace is outside of a shape to make the latter transparent is the main feature of this tool.
+See also: [https://summer.hackclub.com/projects/6906]
 
 ## Disclaimer
 Currently, asciiasm is neither listed on PyPI nor am I sure if everything works properly. Just take a look at the contents of the tests folder.
