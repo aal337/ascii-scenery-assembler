@@ -1,86 +1,31 @@
-<!doctype html>
-  <html>
-    <head>
-      <link rel="stylesheet" href="node_modules/@xterm/xterm/css/xterm.css" />
-      <script src="node_modules/@xterm/xterm/lib/xterm.js"></script>
-    </head>
-    <body>
-      <div id="terminal"></div>
-      <script>
-        var term = new Terminal();
-        // count how many inputs have been entered
-        let inputCount = 0;
-        const MAX_INPUTS = 6;
-        term.open(document.getElementById('terminal'));
-        term.write('This is the demo for asciiasm. Start by opening the application with "asciiasm".')
-        const newlines = '\n\n\n\n\n\n\n\n';
-        function runCommand(command) {
-            switch (command) {
-                case 'asciiasm':
-                    term.write('Welcome to asciiasm! Try loading "tree.txt" with "load sprite tree.txt".\n');
-                    term.write('Enter command: ');
-                    break;
-                case 'exit tool':
-                    inputCount = MAX_INPUTS;
-                    break;
-                case 'load sprite tree.txt':
-                    term.write('Now try loading man.txt.\n');
-                    term.write('Enter command: ');
-                    break;
-                case 'load sprite man.txt':
-                    term.write('Now that you have loaded the sprites, you can use them: "place sprite tree.txt 0 0 0".\n');
-                    term.write('Enter command: ');
-                    break;
-                case 'place sprite tree.txt 0 0 0':
-                    var tree = ' ---\n/   \\ \n\\   /\n ---\n | |\n/   \\ \n';
-                    var man = ' ---\n/ ° \\ \n\\ + /\n -|-\n |||\n/ ^ \\ \n';
-                    term.write(tree);
-                    term.write('Now place the man in front of the tree with "place sprite man.txt 1 0 0".\n')
-                    term.write('Enter command: ');
-                    break;
-                case 'place sprite man.txt 1 0 0':
-                    term.write(man);
-                    term.write('I think there is a man in front of the tree, and you, too, think that. Anyway, get out of here with "exit tool".\n');
-                    term.write('Enter command: ');
-                    break;
-                default:
-                    term.write('Please enter a valid command.');
-            }
-        }
-        // handle user input up to MAX_INPUTS
-        let command = '';
-        term.onData(data => {
-          if (inputCount >= MAX_INPUTS) {
-            // ignore further input after reaching limit
-            return;
-          }
-          switch (data) {
-            case '\r':   // Enter
-              runCommand(command);
-              command = '';
-              inputCount++;
-              if (inputCount >= MAX_INPUTS) {
-                term.writeln('\r\nDemo ended. Reload to start again.');
-              } else {
-                term.prompt();
-              }
-              break;
-            case '\u0003': // Ctrl+C
-              command = '';
-              term.write('^C');
-              term.prompt();
-              break;
-            case '\u007F': // Backspace (DEL)
-              if (command.length > 0) {
-                command = command.slice(0, -1);
-                term.write('\b \b');
-              }
-              break;
-            default:
-              command += data;
-              term.write(data);
-          }
-        });
-      </script>
-    </body>
-  </html>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+body{margin:0;background:#000;color:#0f0;font-family:monospace;white-space:pre;}#terminal{padding:10px;overflow:auto;height:90vh;}#cmd{width:100%;box-sizing:border-box;border:none;background:#000;color:#0f0;font-family:monospace;outline:none;padding:10px;}
+</style>
+</head>
+<body>
+<div id="terminal"></div>
+<input id="cmd" autofocus autocomplete="off">
+<script>
+const t=document.getElementById('terminal');
+const c=document.getElementById('cmd');
+const tree = " ---\n/   \\ \n\\\\   /\n ---\n | |\n/   \\ \n";
+const man = " ---\n/ ° \\ \n\\\\ + /\n -|-\n |||\n/ ^ \\ \n";
+function w(s){t.textContent+=s; t.scrollTop=t.scrollHeight}
+function wl(s){w(s+'\n')}
+function prompt(){w('> ')}
+function run(cmd){
+ if(cmd==='asciiasm'){wl('Welcome to asciiasm');prompt()}
+ else if(cmd==='load sprite tree.txt'){wl(tree);prompt()}
+ else if(cmd==='load sprite man.txt'){wl(man);prompt()}
+ else if(cmd==='exit'){wl('Goodbye');c.disabled=true}
+ else{wl('Unknown command');prompt()}}
+wl('Type "asciiasm" to begin')
+prompt()
+c.addEventListener('keydown',e=>{if(e.key==='Enter'){run(c.value);c.value=''}})
+</script>
+</body>
+</html>
