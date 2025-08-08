@@ -2,8 +2,6 @@
 Filling whitespace recognition and stripping of surrounding whitespace.
 """
 
-import numpy as np
-
 class Sprite:
     """Represent a sprite that can be placed on a canvas."""
 
@@ -13,7 +11,7 @@ class Sprite:
     layer: int
     row: int
     column: int
-    grid: np.ndarray
+    grid: list[list[str | None]]
     text: str
 
     def __init__(self, name: str, text: str) -> None:
@@ -21,7 +19,7 @@ class Sprite:
         self.text = text
         self.height = len(line_list := text.split("\n"))
         self.width = max(map(len, line_list))
-        self.grid = np.array([[char for char in line] for line in line_list])
+        self.grid = [[char for char in line] for line in line_list]
 
         self.transparentise_whitespace()
 
@@ -41,11 +39,14 @@ class Sprite:
                            else self.width):
                            # self.height, width of current line, width of current line
                 j = values["j start"] # length of current line, 0, self.height
-                while (self.grid[i][j]
-                       if (condition := not values["j height"])
-                       else self.grid[j][i]) in {" ", None}: # i,j , j,i , j,i
-                    self.grid[i if condition else j][j if condition else i] = None # same
-                    j += values["sign"] # -1 for right and bottom
+                try:
+                    while (self.grid[i][j]
+                           if (condition := not values["j height"])
+                           else self.grid[j][i]) in {" ", None}: # i,j , j,i , j,i
+                        self.grid[i if condition else j][j if condition else i] = None # same
+                        j += values["sign"] # -1 for right and bottom
+                except IndexError:
+                    break
 
 
 def config(*args):
