@@ -31,13 +31,12 @@ Type pip install asciiasm in the terminal.
     - Type "exit tool"
 
 ### Features
-Currently, you may want to use something else with more QoL. Analysing sprites to determine which whitespace fills a shape and which whitespace is outside of a shape to make the latter transparent is the main feature of this tool.
+Currently, you may want to use something else with more QoL and customisation options. Analysing sprites to determine which whitespace fills a shape and which whitespace is outside of a shape to make the latter transparent is the main feature of this tool.
 See also: https://summer.hackclub.com/projects/6906
 
 ## Disclaimer
-Currently, asciiasm is neither listed on PyPI nor am I sure if everything works properly. Just take a look at the contents of the tests folder.
+I am not absolutely sure if everything works properly. Just take a look at the contents of the tests folder.
 Your terminal could behave weirdly after usage.
-I'll create a release on Github, list on PyPI and remove this disclaimer as soon as I am somewhat sure I could in good faith recommend this app to you if you were searching for something that won't blow up your device.
 
 ## Contribution
 If you've got feedback, send an email or open an issue.
