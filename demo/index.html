@@ -8,8 +8,79 @@
       <div id="terminal"></div>
       <script>
         var term = new Terminal();
+        // count how many inputs have been entered
+        let inputCount = 0;
+        const MAX_INPUTS = 6;
         term.open(document.getElementById('terminal'));
-        term.write('Hello from \x1B[1;3;31mxterm.js\x1B[0m $ ')
+        term.write('This is the demo for asciiasm. Start by opening the application with "asciiasm".')
+        const newlines = '\n\n\n\n\n\n\n\n';
+        function runCommand(command) {
+            switch (command) {
+                case 'asciiasm':
+                    term.write('Welcome to asciiasm! Try loading "tree.txt" with "load sprite tree.txt".\n');
+                    term.write('Enter command: ');
+                    break;
+                case 'exit tool':
+                    inputCount = MAX_INPUTS;
+                    break;
+                case 'load sprite tree.txt':
+                    term.write('Now try loading man.txt.\n');
+                    term.write('Enter command: ');
+                    break;
+                case 'load sprite man.txt':
+                    term.write('Now that you have loaded the sprites, you can use them: "place sprite tree.txt 0 0 0".\n');
+                    term.write('Enter command: ');
+                    break;
+                case 'place sprite tree.txt 0 0 0':
+                    var tree = ' ---\n/   \\ \n\\   /\n ---\n | |\n/   \\ \n';
+                    var man = ' ---\n/ ° \\ \n\\ + /\n -|-\n |||\n/ ^ \\ \n';
+                    term.write(tree);
+                    term.write('Now place the man in front of the tree with "place sprite man.txt 1 0 0".\n')
+                    term.write('Enter command: ');
+                    break;
+                case 'place sprite man.txt 1 0 0':
+                    term.write(man);
+                    term.write('I think there is a man in front of the tree, and you, too, think that. Anyway, get out of here with "exit tool".\n');
+                    term.write('Enter command: ');
+                    break;
+                default:
+                    term.write('Please enter a valid command.');
+            }
+        }
+        // handle user input up to MAX_INPUTS
+        let command = '';
+        term.onData(data => {
+          if (inputCount >= MAX_INPUTS) {
+            // ignore further input after reaching limit
+            return;
+          }
+          switch (data) {
+            case '\r':   // Enter
+              runCommand(command);
+              command = '';
+              inputCount++;
+              if (inputCount >= MAX_INPUTS) {
+                term.writeln('\r\nDemo ended. Reload to start again.');
+              } else {
+                term.prompt();
+              }
+              break;
+            case '\u0003': // Ctrl+C
+              command = '';
+              term.write('^C');
+              term.prompt();
+              break;
+            case '\u007F': // Backspace (DEL)
+              if (command.length > 0) {
+                command = command.slice(0, -1);
+                term.write('\b \b');
+              }
+              break;
+            default:
+              command += data;
+              term.write(data);
+          }
+        });
       </script>
     </body>
   </html>
