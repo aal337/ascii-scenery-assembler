@@ -7,7 +7,7 @@ A tool that helps with putting ascii sprites over each other.
 1. Python (3.10-ish or more recent recommended)
 2. pip for easy installation
 3. git for alternative installation (and the only way as of writing this)
-If you're not sure whether you have Python on your machine, type "python --version" in the terminal. If you get something like "no such command", go to (the official Python website)[https://python.org] and get it from there.
+If you're not sure whether you have Python on your machine, type "python --version" in the terminal. If you get something like "no such command", go to https://python.org and get it from there.
 
 ### Installation
 Type git clone https://github.com/aal337/ascii-scenery-assembler.git in the terminal, then cd ascii-scenery-assembler, then pip install . , the dot is important.
@@ -32,7 +32,7 @@ Type pip install asciiasm in the terminal.
 
 ### Features
 Currently, you may want to use something else with more QoL. Analysing sprites to determine which whitespace fills a shape and which whitespace is outside of a shape to make the latter transparent is the main feature of this tool.
-See also: [https://summer.hackclub.com/projects/6906]
+See also: https://summer.hackclub.com/projects/6906
 
 ## Disclaimer
 Currently, asciiasm is neither listed on PyPI nor am I sure if everything works properly. Just take a look at the contents of the tests folder.
