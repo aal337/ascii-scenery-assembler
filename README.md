@@ -6,14 +6,13 @@ A tool that helps with putting ascii sprites over each other.
 ### Requirements
 1. Python (3.10-ish or more recent recommended)
 2. pip for easy installation
-3. git for alternative installation (and the only way as of writing this)
+3. git for alternative installation
 If you're not sure whether you have Python on your machine, type "python --version" in the terminal. If you get something like "no such command", go to https://python.org and get it from there.
 
 ### Installation
-Type git clone https://github.com/aal337/ascii-scenery-assembler.git in the terminal, then cd ascii-scenery-assembler, then pip install . , the dot is important.
-
-As soon as asciiasm is available on PyPI:
 Type pip install asciiasm in the terminal.
+With git:
+Type git clone https://github.com/aal337/ascii-scenery-assembler.git in the terminal, then cd ascii-scenery-assembler, then pip install . , the dot is important.
 
 ### Usage
 1. Type asciiasm in the terminal.
