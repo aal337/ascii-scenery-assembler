@@ -25,7 +25,15 @@ function run(cmd){
  else{wl('Unknown command');prompt()}}
 wl('Type "asciiasm" to begin')
 prompt()
-c.addEventListener('keydown',e=>{if(e.key==='Enter'){run(c.value);c.value=''}})
+c.focus()
+// keep input focused on clicks
+document.body.addEventListener('click',() => c.focus())
+c.addEventListener('keydown',e => {
+	if (e.key === 'Enter') {
+		run(c.value);
+		c.value = '';
+	}
+})
 </script>
 </body>
 </html>
