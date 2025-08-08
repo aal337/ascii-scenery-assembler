@@ -18,9 +18,9 @@ function w(s){t.textContent+=s; t.scrollTop=t.scrollHeight}
 function wl(s){w(s+'\n')}
 function prompt(){w('> ')}
 function run(cmd){
- if(cmd==='asciiasm'){wl('Welcome to asciiasm. Try loading tree.txt');prompt()}
+ if(cmd==='asciiasm'){wl('Welcome to asciiasm. Try loading tree.txt with "load sprite tree.txt".');prompt()}
  else if(cmd==='load sprite tree.txt'){wl(tree + 'and man.txt');prompt()}
- else if(cmd==='load sprite man.txt'){wl(man + 'and now exit');prompt()}
+ else if(cmd==='load sprite man.txt'){wl(man + 'and now exit with "exit tool".');prompt()}
  else if(cmd==='exit tool'){wl('Goodbye');c.disabled=true}
  else{wl('Unknown command');prompt()}}
 wl('Type "asciiasm" to begin')
