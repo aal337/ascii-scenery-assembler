@@ -15,7 +15,8 @@ def load_sprite(file_path: Path) -> Sprite:
 
 def load_canvas(dir_path: Path) -> Canvas:
     """Load a canvas and continue where user left off."""
+    raise NotImplementedError("Loading non-flat canvas not implemented yet")
     canvas = Canvas()
-    for file_name in listdir(dir_path):
-        canvas.add_sprite(load_sprite(dir_path / file_name))
+    for file_name in listdir(dir_path): pass
+        # canvas.add_sprite(load_sprite(dir_path / file_name))
     return canvas
