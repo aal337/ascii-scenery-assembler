@@ -31,7 +31,8 @@ class Session:
         refresh()
 
     def execute(self, command: str) -> None:
-        self.command_log.append(command)
+        if command:
+            self.command_log.append(command)
         command_words = command.split(" ")
         match " ".join(command_words[:2]):
             case "place sprite":
