@@ -28,7 +28,7 @@ Type git clone https://github.com/aal337/ascii-scenery-assembler.git in the term
 3. End application:
     - CTRL + C
     - Type "exit tool"
-
+The app will crash if you do something like opening a nonexistent file or placing a nonexisting sprite.
 ### Features
 Currently, you may want to use something else with more QoL and customisation options. Analysing sprites to determine which whitespace fills a shape and which whitespace is outside of a shape to make the latter transparent is the main feature of this tool.
 See also: https://summer.hackclub.com/projects/6906
