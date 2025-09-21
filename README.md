@@ -7,27 +7,27 @@ A tool that helps with putting ascii sprites over each other.
 1. Python (3.10-ish or more recent recommended)
 2. pip for easy installation
 3. git for alternative installation
-If you're not sure whether you have Python on your machine, type "python --version" in the terminal. If you get something like "no such command", go to https://python.org and get it from there.
+If you're not sure whether you have Python on your machine, type `python --version` in the terminal. If you get something like "no such command", go to https://python.org and get it from there.
 
 ### Installation
-Type pip install asciiasm in the terminal.
+Type `pip install asciiasm` in the terminal.
 With git:
-Type git clone https://github.com/aal337/ascii-scenery-assembler.git in the terminal, then cd ascii-scenery-assembler, then pip install . , the dot is important.
+Type `git clone https://github.com/aal337/ascii-scenery-assembler.git` in the terminal, then `cd ascii-scenery-assembler`, then `pip install .` .
 
 ### Usage
-1. Type asciiasm in the terminal.
+1. Type `asciiasm` in the terminal.
 2. Available commands:
-    - load sprite path/to/sprite.txt
+    - `load sprite path/to/sprite.txt`
       where path/to/sprite.txt is the path to your sprite, which will be used as its name.
       Sprites currently have to be perfectly rectangular, including whitespace.
-    - place sprite layer row column
+    - `place sprite layer row column`
       where layer is the number of the layer you want to put the sprite into, row the number of the row where the top left corner of the sprite should be, and column the number of the column. Rows/columns start at 0 and are counted from top to bottom/left to right.
       Layers start at 0, the higher the number, the further your sprite is 
     - save canvas path
       where path is the path at which you want to save your canvas.
 3. End application:
     - CTRL + C
-    - Type "exit tool"
+    - Type `exit tool`
 The app will crash if you do something like opening a nonexistent file or placing a nonexisting sprite.
 ### Features
 Currently, you may want to use something else with more QoL and customisation options. Analysing sprites to determine which whitespace fills a shape and which whitespace is outside of a shape to make the latter transparent is the main feature of this tool.
