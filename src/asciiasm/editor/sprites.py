@@ -19,7 +19,7 @@ class Sprite:
         self.text = text
         self.height = len(line_list := text.split("\n"))
         self.width = max(map(len, line_list))
-        self.grid = [[char for char in line] for line in line_list]
+        self.grid = [list(line) for line in line_list]
 
         self.transparentise_whitespace()
 
