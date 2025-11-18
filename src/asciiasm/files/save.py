@@ -7,7 +7,7 @@ from asciiasm.editor.canvas import Canvas
 def save_image(canvas: Canvas, path: Path) -> None:
     """Saves rendered canvas to a file."""
     with path.open(mode="w", encoding="UTF-8") as f:
-        f.write(canvas.serialise())
+        f.write(canvas.serialise()[0])
 
 
 def save_data(canvas: Canvas, path: Path) -> None:

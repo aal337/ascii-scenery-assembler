@@ -26,7 +26,7 @@ class Session:
     def display_canvas_and_messages(self):
         clear()
         move(0, 0)
-        addstr(self.canvas.serialise())
+        addstr(f"{(result := self.canvas.serialise())[0]}{"\n\n" if result[1] else ""}{"\n".join(str(msg) for msg in result[1])}")
         refresh()
 
     def execute(self, command: str) -> None:

@@ -23,6 +23,11 @@ class Sprite:
 
         self.transparentise_whitespace()
 
+    def __eq__(self, value: object) -> bool:
+        if not isinstance(value, Sprite):
+            return NotImplemented
+        return (self.name, self.text) == (value.name, value.text)
+
     def serialise(self) -> str:
         """Return a string representation of the sprite."""
         return self.text

@@ -1,7 +1,21 @@
 """Provide canvas editing and rendering utility."""
 
+from dataclasses import dataclass
 from pathlib import Path
 from .sprites import Sprite
+
+@dataclass
+class Overlap:
+    """Represent an overlap error when placing sprites on the same layer."""
+
+    sprite1: Sprite
+    sprite2: Sprite
+    layer: int
+    pos_x: int
+    pos_y: int
+
+    def __str__(self):
+        return f"Overlap between sprites '{self.sprite1.name}' and '{self.sprite2.name}' at position ({self.pos_x}, {self.pos_y}) on layer {self.layer}"
 
 class Canvas:
     """Canvas on which sprites are placed."""
@@ -9,13 +23,14 @@ class Canvas:
     sprites: list[Sprite] = []
     used_layers: set[int] = set()
 
-    def serialise(self) -> str:
+    def serialise(self) -> tuple[str, list[Overlap]]:
         """Return a string representation of the canvas."""
         layers: dict[int, list[Sprite]] = {}
         layer_grids: dict[int, list[list[str | None]]] = {}
         max_layer = 0
         width = 0
         height = 0
+        overlaps: list[Overlap] = []
         for sprite in self.sprites:
             try:
                 # group sprites by layer
@@ -32,9 +47,24 @@ class Canvas:
             layer_grids.update({i: [[None for __ in range(width)] for __ in range(height)]})
             for sprite in layers[i]:
                 # dumb approach for now: take each sprite and fill its area in the grid
-                # TODO: check for overlaps
                 for y, row in enumerate(sprite.grid, sprite.row):
                     for x, char in enumerate(row, sprite.column):
+                        if char is not None:
+                            if layer_grids[i][y][x] is not None:
+                                overlaps.append(Overlap(
+                                    sprite,
+                                    next(other_sprite for other_sprite in layers[i]
+                                         if (other_sprite.row
+                                              <= y
+                                              < other_sprite.row + other_sprite.height
+                                             and other_sprite.column
+                                              <= x
+                                              < other_sprite.column + other_sprite.width
+                                             and other_sprite != sprite)),
+                                    x,
+                                    y,
+                                    i
+                                ))
                         layer_grids[i][y][x] = char
         # create the string representation by:
         # 1. iterating through the cells of the final canvas
@@ -46,7 +76,7 @@ class Canvas:
                     if (new_char := layer_grids[layer][y][x]) is not None:
                         result_grid[y][x] = new_char
         # 3. join characters into a string
-        return "\n".join(["".join(row) for row in result_grid])
+        return "\n".join(["".join(row) for row in result_grid]), overlaps
 
 
     def files(self) -> dict[Path, Sprite]:
