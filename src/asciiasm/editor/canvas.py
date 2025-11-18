@@ -15,7 +15,8 @@ class Overlap:
     pos_y: int
 
     def __str__(self):
-        return f"Overlap between sprites '{self.sprite1.name}' and '{self.sprite2.name}' at position ({self.pos_x}, {self.pos_y}) on layer {self.layer}"
+        return f"""Overlap between sprites '{self.sprite1.name}' and '{self.sprite2.name}'
+            at position ({self.pos_x}, {self.pos_y}) on layer {self.layer}"""
 
 class Canvas:
     """Canvas on which sprites are placed."""
@@ -49,22 +50,21 @@ class Canvas:
                 # dumb approach for now: take each sprite and fill its area in the grid
                 for y, row in enumerate(sprite.grid, sprite.row):
                     for x, char in enumerate(row, sprite.column):
-                        if char is not None:
-                            if layer_grids[i][y][x] is not None:
-                                overlaps.append(Overlap(
-                                    sprite,
-                                    next(other_sprite for other_sprite in layers[i]
-                                         if (other_sprite.row
-                                              <= y
-                                              < other_sprite.row + other_sprite.height
-                                             and other_sprite.column
-                                              <= x
-                                              < other_sprite.column + other_sprite.width
-                                             and other_sprite != sprite)),
-                                    x,
-                                    y,
-                                    i
-                                ))
+                        if char is not None and layer_grids[i][y][x] is not None:
+                            overlaps.append(Overlap(
+                                sprite,
+                                next(other_sprite for other_sprite in layers[i]
+                                     if (other_sprite.row
+                                          <= y
+                                          < other_sprite.row + other_sprite.height
+                                         and other_sprite.column
+                                          <= x
+                                          < other_sprite.column + other_sprite.width
+                                         and other_sprite != sprite)),
+                                x,
+                                y,
+                                i
+                            ))
                         layer_grids[i][y][x] = char
         # create the string representation by:
         # 1. iterating through the cells of the final canvas
