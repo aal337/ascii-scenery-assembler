@@ -17,8 +17,6 @@ class Session:
         self.scr = scr
 
     def take_input(self) -> str:
-        clear()
-        self.display_canvas()
         move(getmaxy(self.scr) - 1, 0)
         addstr("Enter command: ")
         refresh()
