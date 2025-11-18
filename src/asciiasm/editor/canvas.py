@@ -23,12 +23,9 @@ class Canvas:
             except KeyError:
                 layers.update({sprite.layer: [sprite]})
             # find dimensions of canvas
-            if sprite.layer > max_layer:
-                max_layer = sprite.layer
-            if (y := sprite.row + sprite.height) > height:
-                height = y
-            if (x := sprite.column + sprite.width) > width:
-                width = x
+            max_layer = max(max_layer, sprite.layer)
+            height = max(height, sprite.row + sprite.height)
+            width = max(width, sprite.column + sprite.width)
         # create a grid for each layer and fill it
         used_layer_nums = sorted(list(self.used_layers))
         for i in used_layer_nums:
