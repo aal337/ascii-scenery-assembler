@@ -25,7 +25,7 @@ class Session:
         command = getstr()
         return command
 
-    def display_canvas(self):
+    def display_canvas_and_messages(self):
         clear()
         move(0, 0)
         addstr(self.canvas.serialise())

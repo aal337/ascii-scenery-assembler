@@ -15,7 +15,7 @@ def main():
         while True:
             command = session.take_input()
             session.execute(command)
-            session.display_canvas()
+            session.display_canvas_and_messages()
     except KeyboardInterrupt:
         sys.exit()
     finally:
