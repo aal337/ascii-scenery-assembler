@@ -7,6 +7,7 @@ A tool that helps with putting ascii sprites over each other.
 1. Python (3.10-ish or more recent recommended)
 2. pip for easy installation
 3. git for alternative installation
+
 If you're not sure whether you have Python on your machine, type `python --version` in the terminal. If you get something like "no such command", go to https://python.org and get it from there.
 
 ### Installation
