@@ -1,5 +1,6 @@
 """todo"""
 
+from ctypes import c_void_p
 from pathlib import Path
 import sys
 from unicurses import move, addstr, refresh, getstr, getmaxy, endwin, clear
@@ -11,7 +12,7 @@ class Session:
     sprites: dict[str, Sprite] = {}
     command_log: list[str] = []
 
-    def __init__(self, scr) -> None:
+    def __init__(self, scr: c_void_p) -> None:
         self.canvas = canvas.Canvas()
         self.scr = scr
 
@@ -49,3 +50,5 @@ class Session:
                 endwin()
                 print(*["asciiasm: " + line for line in self.command_log], sep="\n")
                 sys.exit(0)
+            case _:
+                pass

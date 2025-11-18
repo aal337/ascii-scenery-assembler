@@ -49,7 +49,7 @@ class Sprite:
                     break
 
 
-def config(*args):
+def config(*args: bool | int) -> dict[str, bool | int]:
     """Configure the four starting points for sprite transparentisation."""
     return {"takes height": args[0], "j start": args[1],
             "j height": args[2], "sign": args[3]}
